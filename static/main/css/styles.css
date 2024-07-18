@@ -3,15 +3,55 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+
+    overflow: hidden;
+}
+
+
+
+.bgvideo {
+
+    position: relative;
+    display: flex;
+
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.video-width {
+    /* overflow: hidden; */
+
+    width: 100%;
+}
+
+.effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    /* чтобы отображался под video-text */
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.375);
 }
 
 .container {
+
+    position: absolute;
+
+    bottom: 450px;
+    width: 397px;
+
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+
+    z-index: 3;
+
 }
 
 h1 {
@@ -37,16 +77,22 @@ input {
 
 button {
     padding: 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    font-size: 19px;
+    font-style:inherit ;
+    background-color: #0F8;
+    color: rgb(0, 0, 0);
+    
+    border-width: 2px;
     border-radius: 4px;
+    border-color: #e0e0f9;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #44B;
+    color: white;
+    border-color: white;
+
 }
 
 #weatherResults {

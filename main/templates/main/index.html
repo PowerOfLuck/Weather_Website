@@ -1,11 +1,40 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Зайцеград</title>
+    <title>Weather Forecast</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'main/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'main/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'main/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'main/favicon/site.webmanifest' %}">
+
 </head>
 <body>
-    <p>Фото заик</p>
+    <div>
+        <div class="bgvideo">
+            <video src="{% static 'main/video/Nature_v3.mp4' %}" type="video/mp4" autoplay muted loop></video>
+            <div class="container">
+                <h1>Прогноз погоды</h1>
+                <form id="cityForm" method="post" action="/get_weather">
+                    <label for="city">Введите город:</label>
+                    <input type="text" id="city" name="city" placeholder="Название города" required>
+                    <button type="submit">Узнать Прогноз</button>
+                </form>
+        
+                <div id="weatherResults">
+                    <!-- Weather results will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
