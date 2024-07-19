@@ -22,14 +22,23 @@
             <video src="{% static 'main/video/Nature_v3.mp4' %}" type="video/mp4" autoplay muted loop></video>
             <div class="container">
                 <h1>Прогноз погоды</h1>
-                <form id="cityForm" method="post" action="/get_weather">
+                                
+                <form id="cityForm" method="post" action="{% url 'index' %}">
+                    {% csrf_token %}
                     <label for="city">Введите город:</label>
                     <input type="text" id="city" name="city" placeholder="Название города" required>
                     <button type="submit">Узнать Прогноз</button>
                 </form>
         
                 <div id="weatherResults">
-                    <!-- Weather results will be inserted here -->
+                    {% if weather %}
+                        <h2>Температура в {{ weather.city }}</h2>
+                        <p>Температура: {{ weather.temperature }} °C</p>
+                        <p>Широта: {{ weather.latitude }} %</p>
+                        <p>Долгота: {{ weather.longitude }}</p>
+                    {% elif weather.error %}
+                        <p>{{ weather.error }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
