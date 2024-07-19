@@ -22,20 +22,35 @@
             <video src="{% static 'main/video/Nature_v3.mp4' %}" type="video/mp4" autoplay muted loop></video>
             <div class="container">
                 <h1>Прогноз погоды</h1>
-                                
-                <form id="cityForm" method="post" action="{% url 'index' %}">
-                    {% csrf_token %}
-                    <label for="city">Введите город:</label>
-                    <input type="text" id="city" name="city" placeholder="Название города" required>
-                    <button type="submit">Узнать Прогноз</button>
-                </form>
+                
+                {% if last_city %}
+                    <p>В прошлый раз вы смотрели погоду в городе {{ last_city }}. Хотите посмотреть снова?</p>
+                    <form method="post" action="{% url 'index' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="city" value="{{ last_city }}">
+                        <button type="submit">Да</button>
+                    </form>
+                {% endif %}
+
+                <div style="margin-top: 11px;">
+                    <form id="cityForm" method="post" action="{% url 'index' %}">
+                        {% csrf_token %}
+                        <label for="city">Введите город:</label>
+                        <input type="text" id="city" name="city" placeholder="Название города" required>
+                        <button type="submit">Узнать Прогноз</button>
+                    </form>
+                </div>
         
                 <div id="weatherResults">
                     {% if weather %}
-                        <h2>Температура в {{ weather.city }}</h2>
+                        <h2>Температура в городе {{ weather.city }}</h2>
                         <p>Температура: {{ weather.temperature }} °C</p>
-                        <p>Широта: {{ weather.latitude }} %</p>
-                        <p>Долгота: {{ weather.longitude }}</p>
+
+                        <div>
+                            <h3 style="margin-bottom: 3px;">Координаты города</h2>
+                            <p>Широта: {{ weather.latitude }}</p>
+                            <p>Долгота: {{ weather.longitude }}</p>
+                        </div>
                     {% elif weather.error %}
                         <p>{{ weather.error }}</p>
                     {% endif %}
