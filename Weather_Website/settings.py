@@ -71,7 +71,7 @@ DATABASES = {
         'NAME': 'weather',
         'USER': 'weather',
         'PASSWORD': 'weather',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
